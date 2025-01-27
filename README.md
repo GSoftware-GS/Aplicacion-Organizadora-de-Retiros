@@ -1,6 +1,4 @@
-### README.md
 
-```markdown
 # Aplicación Organizadora de Retiros
 
 ## Descripción
