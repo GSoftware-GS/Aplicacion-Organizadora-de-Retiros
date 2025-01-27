@@ -20,7 +20,7 @@
                     <!-- Menú para usuarios logueados -->
                     <a href="panel_control.php">Panel</a>
                     <a href="calendario.php">Calendario</a>
-                    <a href="gestion_tareas.php">Tareas</a>
+                    <a href="tareas.php">Tareas</a>
                     <?php if ($_SESSION['rol'] === 'admin'): ?>
                         <a href="gestion_usuarios.php">Usuarios</a>
                     <?php endif; ?>

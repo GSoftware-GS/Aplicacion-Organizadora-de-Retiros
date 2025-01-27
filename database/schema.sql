@@ -1,5 +1,7 @@
+DROP DATABASE IF EXISTS retiros_db;
+
 -- Crear la base de datos
-CREATE DATABASE IF NOT EXISTS retiros_db;
+CREATE DATABASE retiros_db;
 USE retiros_db;
 
 -- Tabla de usuarios
@@ -7,7 +9,7 @@ CREATE TABLE usuarios (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    rol ENUM('admin', 'conductor', 'cocinero', 'asistente') DEFAULT 'asistente',
+    rol ENUM('admin', 'conductor', 'cocinero', 'asistente', 'trabajador', 'profesor', 'socio') DEFAULT 'trabajador',
     password_hash VARCHAR(255) NOT NULL
 );
 
@@ -18,10 +20,18 @@ CREATE TABLE eventos (
     descripcion TEXT,
     fecha_inicio DATETIME NOT NULL,
     fecha_fin DATETIME,
-    color VARCHAR(20) DEFAULT '#007bff',
-    tipo ENUM('grupal', 'privado') DEFAULT 'grupal',
-    asignado_a,
-    FOREIGN KEY (asignado_a) REFERENCES usuarios(id)
+    tipo ENUM('vuelo', 'clase_yoga', 'cena', 'reunion', 'otro') DEFAULT 'otro',
+    color VARCHAR(20) DEFAULT '#007bff'
+);
+
+-- Tabla para asignar usuarios individuales a eventos
+CREATE TABLE eventos_usuarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    evento_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+    rol_asociado ENUM('conductor', 'profesor', 'socio', 'participante', 'organizador') NOT NULL,
+    FOREIGN KEY (evento_id) REFERENCES eventos(id) ON DELETE CASCADE,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 -- Tabla de tareas
@@ -41,6 +51,5 @@ VALUES (
     'Administrador', 
     'admin@retiros.com', 
     'admin', 
-    -- Contraseña hasheada con SHA-256 (solo para ejemplo; en producción usar password_hash() de PHP)
-    SHA2('Admin1234', 256)
+    '$2y$10$HI2RLSMnYg/A22wn6ivfmeh3hRuk/5XdoQkYRPA/Kiq/ZkZpnuXia'
 );

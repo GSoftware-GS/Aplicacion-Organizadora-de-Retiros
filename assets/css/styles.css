@@ -243,3 +243,79 @@ button:hover {
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
 }
+
+.calendar-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+.calendar-day {
+    border: 1px solid #ddd;
+    min-height: 120px;
+    padding: 10px;
+    background: white;
+}
+.evento {
+    padding: 5px;
+    margin: 3px 0;
+    border-radius: 4px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+.evento-sin-asignar {
+    background: #ffcccc;
+    border-left: 3px solid #dc3545;
+}
+.month-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.month-navigation button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px 5px;
+}
+.month-navigation button:hover {
+    background-color: #0056b3;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 100px auto;
+    position: relative;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
